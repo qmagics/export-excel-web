@@ -83,6 +83,7 @@ function download3() {
                 label: "性别",
                 prop: "sex",
                 formatter({ value }) {
+                    debugger;
                     return { 1: '男', 2: '女' }[value]
                 }
             }
