@@ -4,11 +4,14 @@ import startExport from './export';
 import { createExtraBlockString } from './extra';
 // import startExportIE from './exportIE';
 
-export default ({ columns, data, fileName, sheetName, style, spanMethod, headerRows, footerRows }) => {
-    const extraHeaders = (headerRows || []).map(columns => createExtraBlockString(columns, 'thead')).join('');
-    const thead = createHeaderString(columns);
-    const tbody = createBodyString(columns, data, spanMethod);
-    const extraFooters = (footerRows || []).map(columns => createExtraBlockString(columns, 'tfoot')).join('');
+export default ({ columns, data, fileName, sheetName, style, spanMethod, topRows = [], bottomRows = [], rowHeight, showHeader = true }) => {
+    const extraHeaders = (topRows || []).map(columns => createExtraBlockString(columns, 'thead')).join('');
+
+    const thead = showHeader ? createHeaderString(columns) : '';
+
+    const tbody = createBodyString(columns, data, spanMethod, rowHeight);
+
+    const extraFooters = (bottomRows || []).map(columns => createExtraBlockString(columns, 'tfoot')).join('');
 
     const table = extraHeaders + thead + tbody + extraFooters;
 

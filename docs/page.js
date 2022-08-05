@@ -83,7 +83,6 @@ function download3() {
                 label: "性别",
                 prop: "sex",
                 formatter({ value }) {
-                    debugger;
                     return { 1: '男', 2: '女' }[value]
                 }
             }
@@ -222,7 +221,7 @@ function download6() {
     });
 }
 
-// 设置列宽（图片宽度），图片高度
+// 设置列宽/行高/图片宽度/图片高度
 function download7() {
     ExportExcelWeb({
         fileName: "导出7.xlsx",
@@ -231,8 +230,9 @@ function download7() {
                 label: "头像",
                 prop: "avatar",
                 type: "image",
-                width: 50,
-                height: 50
+                width: 80,
+                imageWidth: 50,
+                imageHeight: 50
             },
             {
                 label: "姓名",
@@ -266,7 +266,8 @@ function download7() {
                 sex: 2,
                 avatar: "https://placekitten.com/400/400",
             }
-        ]
+        ],
+        rowHeight: 80
     });
 }
 
@@ -391,10 +392,10 @@ function download9() {
     });
 }
 
-// 头部内容
+// 头部额外内容
 function download10() {
     ExportExcelWeb({
-        headerRows: [
+        topRows: [
             [
                 {
                     label: "学生表2022",
@@ -432,7 +433,7 @@ function download10() {
     });
 }
 
-// 尾部内容
+// 尾部额外内容
 function download11() {
     ExportExcelWeb({
         fileName: "导出11",
@@ -456,7 +457,7 @@ function download11() {
                 age: 22
             }
         ],
-        footerRows: [
+        bottomRows: [
             [
                 {
                     label: "统计时间：2022-08-01",
@@ -475,8 +476,114 @@ function download11() {
     });
 }
 
+// 动态设置行高/图片宽高
+function download12() {
+    return ExportExcelWeb({
+        fileName: "导出12.xlsx",
+        columns: [
+            {
+                label: "头像",
+                prop: "avatar",
+                type: "image",
+                width: 80,
+                imageWidth({ row }) {
+                    if (row.sex === 1) {
+                        return 30;
+                    } else {
+                        return 60;
+                    }
+                },
+                imageHeight({ row }) {
+                    if (row.sex === 1) {
+                        return 30;
+                    } else {
+                        return 60;
+                    }
+                }
+            },
+            {
+                label: "姓名",
+                prop: "name"
+            },
+            {
+                label: "年龄",
+                prop: "age"
+            },
+            {
+                label: "性别",
+                prop: "sex",
+                formatter({ value }) {
+                    return { 1: '男', 2: '女' }[value]
+                }
+            }
+        ],
+        data: [
+            {
+                name: "张三",
+                age: 28,
+                sex: 1,
+                avatar: "https://placekitten.com/300/300"
+            },
+            {
+                name: "李四",
+                age: 22,
+                sex: 2,
+                avatar: "https://placekitten.com/400/400"
+            },
+            {
+                name: "王五",
+                age: 26,
+                sex: 1,
+                avatar: ""
+            }
+        ],
+        // 根据每行的数据和索引，动态设置行高度
+        rowHeight({ row }) {
+            if (row.avatar) return 80;
+            return 30;
+        }
+    });
+}
+
+// 隐藏表头
+function download13() {
+    ExportExcelWeb({
+        fileName: "导出3.xlsx",
+        columns: [
+            {
+                label: "姓名",
+                prop: "name"
+            },
+            {
+                label: "年龄",
+                prop: "age"
+            },
+            {
+                label: "性别",
+                prop: "sex",
+                formatter({ value }) {
+                    return { 1: '男', 2: '女' }[value]
+                }
+            }
+        ],
+        data: [
+            {
+                name: "张三",
+                age: 28,
+                sex: 1,
+            },
+            {
+                name: "李四",
+                age: 22,
+                sex: 2,
+            }
+        ],
+        showHeader: false
+    });
+}
+
 // // 多个工作表页签
-// function download12() {
+// function download13() {
 //     ExportExcelWeb({
 //         fileName: "导出11.xlsx",
 
@@ -545,14 +652,56 @@ function download99() {
                 prop: "age"
             }
         ],
+        topRows: [],
+        bottomRows: [],
         data: [
             {
-                name: "张三",
-                age: 28
+                name: "王小明",
+                age: 28,
+                avatar: "https://placekitten.com/300/300",
+                class: "一班",
+                sex: 1,
+                score1: 88,
+                score2: 90,
+                score3: 86,
+                teacher: "王老师",
+                address: "浙江省杭州市余杭区文一西路969号淘宝城一期"
             },
             {
-                name: "李四",
-                age: 22
+                name: "李小红",
+                age: 26,
+                avatar: "https://placekitten.com/402/402",
+                class: "一班",
+                sex: 2,
+                score1: 86,
+                score2: 87,
+                score3: 92,
+                teacher: "王老师",
+                address: "浙江省嘉兴市海宁市盐官镇环城南路"
+            },
+            {
+                name: "刘小军",
+                age: 22,
+                avatar: "https://placekitten.com/304/304",
+                class: "二班",
+                sex: 2,
+                score1: 99,
+                score2: 98,
+                score3: 90,
+                teacher: "赵老师",
+                address: "浙江省杭州市拱墅区明园路28号"
+            },
+            {
+                name: "周小曼",
+                age: 26,
+                avatar: "https://placekitten.com/308/308",
+                class: "二班",
+                sex: 2,
+                score1: 100,
+                score2: 95,
+                score3: 99,
+                teacher: "赵老师",
+                address: "浙江省杭州市西湖区龙井路1号"
             }
         ]
     });

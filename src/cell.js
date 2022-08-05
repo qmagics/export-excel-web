@@ -1,8 +1,30 @@
 import { CELL_TYPE, DEFAULTS } from "./constant";
 import { serializeStyle } from "./utils";
 
-export const getCellStyle = (value, row, column, rowIndex, columnIndex) => {
-    const { type, cellStyle, width, height } = column;
+const getImageWidth = (imageWidth, ctx) => {
+    if (!imageWidth) return DEFAULTS.IMAGE_WIDTH;
+
+    if (typeof imageWidth === 'number') {
+        return imageWidth;
+    }
+    else if (typeof imageWidth === 'function') {
+        return imageWidth(ctx);
+    }
+}
+
+const getImageHeight = (imageHeight, ctx) => {
+    if (!imageHeight) return DEFAULTS.IMAGE_HEIGHT;
+
+    if (typeof imageHeight === 'number') {
+        return imageHeight;
+    }
+    else if (typeof imageHeight === 'function') {
+        return imageHeight(ctx);
+    }
+}
+
+export const getCellProps = (value, row, column, rowIndex, columnIndex) => {
+    const { type, cellStyle, width, imageHeight, imageWidth } = column;
 
     let style = undefined;
 
@@ -15,15 +37,26 @@ export const getCellStyle = (value, row, column, rowIndex, columnIndex) => {
 
     let composeStyle = {
         ...DEFAULTS.CELL_STYLE,
+        width: width ? (width + 'px') : '',
         ...style
     }
 
+    let imageProps = {};
+
     if (type === CELL_TYPE.IMAGE) {
-        composeStyle.width = (width || DEFAULTS.IMAGE_WIDTH) + 'px';
-        composeStyle.height = (height || DEFAULTS.IMAGE_HEIGHT) + 'px';
+        imageProps.width = getImageWidth(imageWidth, { value, row, column, rowIndex, columnIndex });
+        imageProps.height = getImageHeight(imageHeight, { value, row, column, rowIndex, columnIndex });
+        composeStyle.height = imageProps.width + 'px';
+
+        if (!width) {
+            composeStyle.width = imageProps.width + 'px';
+        }
     }
 
-    return serializeStyle(composeStyle);
+    return {
+        cellStyle: serializeStyle(composeStyle),
+        imageProps
+    }
 }
 
 export const getCellValue = (row, column, rowIndex, columnIndex) => {
@@ -55,11 +88,11 @@ export const getSpanContent = (spanMethod, ctx) => {
 }
 
 export const getTdContent = (row, column, rowIndex, columnIndex, spanMethod) => {
-    const { type, width, height } = column;
+    const { type } = column;
 
     const value = getCellValue(row, column, rowIndex, columnIndex);
 
-    const td_style = getCellStyle(value, row, column, rowIndex, columnIndex);
+    const { cellStyle: td_style, imageProps } = getCellProps(value, row, column, rowIndex, columnIndex);
 
     // 合并单元格处理
     const { content: span_content, needDelete } = getSpanContent(spanMethod, { row, column, rowIndex, columnIndex });
@@ -69,7 +102,7 @@ export const getTdContent = (row, column, rowIndex, columnIndex, spanMethod) => 
     if (!value) return `<td ${span_content} style="${td_style}"></td>`;
 
     if (type === CELL_TYPE.IMAGE) {
-        return `<td ${span_content} style="${td_style}"><img src="${value}" width="${width || DEFAULTS.IMAGE_WIDTH}" height="${height || DEFAULTS.IMAGE_HEIGHT}" /></td>`;
+        return `<td ${span_content} style="${td_style}"><img src="${value}" width="${imageProps.width}" height="${imageProps.height}" /></td>`;
     }
     else {
         return `<td ${span_content} style="${td_style}"><span>${value}</span></td>`;

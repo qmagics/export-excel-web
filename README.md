@@ -417,7 +417,7 @@ ExportExcelWeb({
 import ExportExcelWeb from 'export-excel-web';
 
 ExportExcelWeb({
-    headerRows: [
+    topRows: [
         [
             {
                 label: "学生表2022",
@@ -481,7 +481,7 @@ ExportExcelWeb({
             age: 22
         }
     ],
-    footerRows: [
+    bottomRows: [
         [
             {
                 label: "学生表2022",

@@ -1,7 +1,6 @@
 import path from 'path';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
-import html from 'rollup-plugin-html';
 
 const outputList = [
     {
@@ -27,9 +26,6 @@ export default {
     output: outputList,
     plugins: [
         babel(),
-        terser(),
-        html({
-            include: '**/*.html'
-        })
+        terser()
     ]
 }
