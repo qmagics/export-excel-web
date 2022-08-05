@@ -2,7 +2,7 @@
 用于在Web端实现导出excel文件，支持图片、合并单元格、控制导出样式等功能
 
 ## 在线演示
-<a href="https://qmagics.github.io/export-excel-web">演示地址</a>
+<a href="https://qmagics.github.io/export-excel-web" target="_blank">演示地址</a>
 
 ## 用法
 
