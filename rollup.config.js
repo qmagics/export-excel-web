@@ -5,17 +5,14 @@ import { terser } from 'rollup-plugin-terser';
 const outputList = [
     {
         format: "es",
-        sourcemap: true,
         file: path.resolve(__dirname, `./lib/index.esm.js`)
     },
     {
         format: "amd",
-        sourcemap: true,
         file: path.resolve(__dirname, `./lib/index.amd.js`)
     },
     {
         format: "umd",
-        sourcemap: true,
         file: path.resolve(__dirname, `./lib/index.js`),
         name: "ExportExcelWeb"
     }
