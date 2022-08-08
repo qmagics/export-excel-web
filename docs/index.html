@@ -20,7 +20,7 @@
 
         .github-icon {
             fill: rgb(61, 76, 90);
-            transform: scale(.9);
+            transform: scale(.8);
         }
 
         .card {
@@ -59,7 +59,25 @@
     </nav>
     <main class="container-fluid" style="padding-top:15px;">
         <div class="row">
-            <h4>基础用法</h4>
+            <h4>综合案例  <small class="text-muted" style="font-size:16px;">搭配使用各种配置项，可以实现比较丰富的导出效果，具体每个配置项如何使用 往下看~👇 欢迎star</small></h4>
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <span>综合案例 - <small class="text-muted"><a class="link"
+                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L658"
+                                    target="_blank">查看代码</a></small></span>
+                        <div class="float-end">
+                            <button class="btn btn-secondary btn-sm" onclick="download99()">导出</button>
+                        </div>
+                    </div>
+                    <div class="card-body" style="height:auto">
+                        <img src="./imgs/99.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4>基础用法  <small class="text-muted" style="font-size:16px;">最简单最常用的配置</small></h4>
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
@@ -101,7 +119,7 @@
             </div>
         </div>
         <div class="row">
-            <h4>扩展功能</h4>
+            <h4>扩展功能  <small class="text-muted" style="font-size:16px;">目前只实现了单个Sheet页签的导出</small></h4>
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
@@ -170,7 +188,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <span>表头表尾单元格合并 - <small class="text-muted"><a class="link"
+                        <span>多级表头 - <small class="text-muted"><a class="link"
                                     href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L349"
                                     target="_blank">查看代码</a></small></span>
                         <button class="btn btn-secondary btn-sm float-end" onclick="download9()">导出</button>
@@ -180,14 +198,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <h4>复杂表格</h4>
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <span>头部额外内容 - <small class="text-muted"><a class="link"
-                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L396"
+                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L416"
                                     target="_blank">查看代码</a></small></span>
                         <button class="btn btn-secondary btn-sm float-end" onclick="download10()">导出</button>
                     </div>
@@ -200,7 +215,7 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <span>尾部额外内容 - <small class="text-muted"><a class="link"
-                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L437"
+                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L455"
                                     target="_blank">查看代码</a></small></span>
                         <button class="btn btn-secondary btn-sm float-end" onclick="download11()">导出</button>
                     </div>
@@ -213,7 +228,7 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <span>动态设置行高/图片宽高 - <small class="text-muted"><a class="link"
-                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L480"
+                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L496"
                                     target="_blank">查看代码</a></small></span>
                         <div class="float-end">
                             <button class="btn btn-secondary btn-sm" onclick="download12()">导出</button>
@@ -228,7 +243,7 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <span>隐藏表头 - <small class="text-muted"><a class="link"
-                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L549"
+                                    href="https://github.com/qmagics/export-excel-web/blob/b6f53155b9f081c611cb3cb10f80c2e71e7f2755/docs/page.js#L565"
                                     target="_blank">查看代码</a></small></span>
                         <div class="float-end">
                             <button class="btn btn-secondary btn-sm" onclick="download13()">导出</button>

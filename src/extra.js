@@ -1,22 +1,22 @@
 import { serializeStyle } from "./utils";
 
+const getSpanContent = (column) => {
+    const { colspan, rowspan } = column;
+    if (colspan === 0 && rowspan === 0) {
+        return '';
+    }
+    return `${colspan ? ('colspan="' + colspan + '"') : ''} ${rowspan ? ('rowspan="' + rowspan + '"') : ''}`;
+}
+
 export const createExtraBlockString = (columns, blockTag) => {
     const ths = columns.map(column => {
-        const { label, width, style, span } = column;
+        const { label, width, style, tag = 'td', align = 'center' } = column;
 
         const styleStr = serializeStyle(style);
 
-        let spanContent = '';
+        let spanContent = getSpanContent(column);
 
-        if (span) {
-            const { colspan, rowspan } = span;
-            if (colspan === 0 && rowspan === 0) {
-                return '';
-            }
-            spanContent = `${colspan ? ('colspan="' + colspan + '"') : ''}${rowspan ? ('rowspan="' + rowspan + '"') : ''}`;
-        }
-
-        return `<th ${spanContent} style="${styleStr}" width="${width}"> ${label} </th>`;
+        return `<${tag} ${spanContent} align="${align}" style="${styleStr}" width="${width}"> ${label} </${tag}>`;
     })
 
     return `<${blockTag}><tr>${ths.join('')}</tr></${blockTag}>`;
