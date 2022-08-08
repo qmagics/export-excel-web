@@ -1,13 +1,13 @@
 # export-excel-web
 用于在Web端实现导出excel文件，支持图片、合并单元格、控制导出样式等功能
 
-## 在线演示
+### 在线演示
 <a href="https://qmagics.github.io/export-excel-web" target="_blank">演示地址</a>
 
-## 导出效果
+### 导出效果
 ![img](https://qmagics.github.io/export-excel-web/imgs/99.png)
 
-## 用法
+### 用法
 
 - 最简用法
 ``` js
