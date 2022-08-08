@@ -4,6 +4,9 @@
 ## 在线演示
 <a href="https://qmagics.github.io/export-excel-web" target="_blank">演示地址</a>
 
+## 导出效果
+![img](https://qmagics.github.io/export-excel-web/imgs/99.png)
+
 ## 用法
 
 - 最简用法
