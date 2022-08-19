@@ -15,6 +15,11 @@ const outputList = [
         format: "umd",
         file: path.resolve(__dirname, `./lib/index.js`),
         name: "ExportExcelWeb"
+    },
+    {
+        format: "umd",
+        file: path.resolve(__dirname, `./docs/export-excel-web.js`),
+        name: "ExportExcelWeb"
     }
 ];
 
