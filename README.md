@@ -635,7 +635,7 @@ ExportExcelWeb({
 });
 ```
 
-- 隐藏表头
+- 综合案例
 ``` js
 import ExportExcelWeb from 'export-excel-web';
 
